@@ -1,0 +1,8 @@
+.card-list{
+    width: 85vw;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+/*display in grid, making for equal columns, and between columns will be 20px gap */
