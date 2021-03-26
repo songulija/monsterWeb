@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css';
 import CardList from './components/cardlist/CardList';
+import Searchbox from './components/searchbox/Searchbox.js';
 
 class App extends Component {
 
@@ -22,10 +23,15 @@ class App extends Component {
       .then(users => this.setState({ monsters: users }))
   }
   render() {
-    return (
+    //every time state changes it will render component. destructure state
+    const {monsters, searchField} = this.state;
+    //filter through monsters array. check every monster that contains searchField text. 
+    const filterMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
+
+    return (//pass to searchbox searchHanlder function. and setState of searchField to whatever is typed into input
       <div className="App">
-        <input type='search' placeholder='Search monsters' value={this.state.searchField} onChange={e => this.setState({ searchField: e.target.value })} />
-        <CardList monsters={this.state.monsters} />
+        <Searchbox placeholder='Search monsters' searchHandler={e => this.setState({ searchField: e.target.value })} />
+        <CardList monsters={filterMonsters} />
       </div>
     );
   }
