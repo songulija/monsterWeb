@@ -24,12 +24,13 @@ class App extends Component {
   }
   render() {
     //every time state changes it will render component. destructure state
-    const {monsters, searchField} = this.state;
+    const { monsters, searchField } = this.state;
     //filter through monsters array. check every monster that contains searchField text. 
     const filterMonsters = monsters.filter(monster => monster.name.toLowerCase().includes(searchField.toLowerCase()));
 
     return (//pass to searchbox searchHanlder function. and setState of searchField to whatever is typed into input
       <div className="App">
+        <h1>Monsters Rolodex</h1>
         <Searchbox placeholder='Search monsters' searchHandler={e => this.setState({ searchField: e.target.value })} />
         <CardList monsters={filterMonsters} />
       </div>
